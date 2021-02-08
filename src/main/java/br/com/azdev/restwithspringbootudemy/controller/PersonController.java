@@ -1,15 +1,11 @@
 package br.com.azdev.restwithspringbootudemy.controller;
 
-import br.com.azdev.restwithspringbootudemy.dto.PersonDTO;
-import br.com.azdev.restwithspringbootudemy.model.Person;
 import br.com.azdev.restwithspringbootudemy.services.PersonServices;
+import br.com.azdev.restwithspringbootudemy.vo.PersonVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -18,37 +14,29 @@ import java.util.List;
 public class PersonController {
 
     @Autowired
-    PersonServices personServices;
-
-    @GetMapping(value= "{id}")
-    public PersonDTO findById (@PathVariable("id") Long id){
-        return new PersonDTO(personServices.findById(id));
-    }
+    PersonServices services;
 
     @GetMapping()
-    public List<PersonDTO> findAll (){
-        List<PersonDTO> personsDTO = new ArrayList<>();
-        List<Person> persons = personServices.findAll();
-        for(Person p : persons){
-            personsDTO.add(new PersonDTO(p));
-        }
-        return personsDTO;
+    public List<PersonVO> findAll (){
+        return services.findAll();
     }
-
+    @GetMapping(value= "{id}")
+    public PersonVO findById (@PathVariable("id") Long id){
+        return services.findById(id);
+    }
     @PostMapping()
-    public PersonDTO create(@RequestBody PersonDTO person){
-        return new PersonDTO(personServices.create(person.parsePerson()));
+    public PersonVO create(@RequestBody PersonVO person){
+        return services.create(person);
     }
 
     @PutMapping()
-    public PersonDTO update(@RequestBody PersonDTO person){
-
-        return new PersonDTO( personServices.create(person.parsePerson()));
+    public PersonVO update(@RequestBody PersonVO person){
+        return services.create(person);
     }
 
     @DeleteMapping(value= "{id}")
     public ResponseEntity<?> delete (@PathVariable("id") Long id){
-        personServices.delete(id);
+        services.delete(id);
         return ResponseEntity.ok().build();
     }
 }

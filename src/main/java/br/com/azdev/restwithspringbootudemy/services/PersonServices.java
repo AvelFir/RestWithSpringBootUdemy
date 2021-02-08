@@ -1,8 +1,10 @@
 package br.com.azdev.restwithspringbootudemy.services;
 
+import br.com.azdev.restwithspringbootudemy.converter.DozerConverter;
 import br.com.azdev.restwithspringbootudemy.exception.ResourceNotFoundException;
 import br.com.azdev.restwithspringbootudemy.model.Person;
 import br.com.azdev.restwithspringbootudemy.repository.PersonRepository;
+import br.com.azdev.restwithspringbootudemy.vo.PersonVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,27 +16,33 @@ public class PersonServices {
     @Autowired
     PersonRepository repository;
 
-    public Person findById(Long id){
-        return repository.findById(id)
+    public PersonVO create(PersonVO person){
+        var entity = DozerConverter.parseObject(person, Person.class);
+        var vo = DozerConverter.parseObject(repository.save(entity), PersonVO.class);
+        return vo;
+    }
+
+    public List<PersonVO> findAll(){
+        return DozerConverter.parseListObjects(repository.findAll(), PersonVO.class);
+    }
+
+
+    public PersonVO findById(Long id){
+        var entity =  repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
+        return DozerConverter.parseObject(entity, PersonVO.class);
     }
 
-    public List<Person> findAll(){
-        return repository.findAll();
-    }
-
-    public Person create(Person person){
-        return repository.save(person);
-    }
-
-    public Person update(Person person){
-        Person entity = repository.findById(person.getId())
+    public PersonVO update(PersonVO person){
+        var entity = repository.findById(person.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
         entity.setFirstName(person.getFirstName());
         entity.setLastName(person.getLastName());
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
-        return repository.save(person);
+
+        var vo = DozerConverter.parseObject(repository.save(entity), PersonVO.class);
+        return vo;
     }
 
     public void delete(Long id){

@@ -1,12 +1,10 @@
-package br.com.azdev.restwithspringbootudemy.dto;
-
-import br.com.azdev.restwithspringbootudemy.model.Person;
+package br.com.azdev.restwithspringbootudemy.vo;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class PersonDTO implements Serializable {
+public class PersonVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -16,23 +14,7 @@ public class PersonDTO implements Serializable {
     private String address;
     private String gender;
 
-    public PersonDTO() {
-    }
-
-    public PersonDTO(Person person) {
-        this.id = person.getId();
-        this.firstName = person.getFirstName();
-        this.lastName = person.getLastName();
-        this.address = person.getAddress();
-        this.gender = person.getGender();
-    }
-
-    public PersonDTO(Long id, String firstName, String lastName, String address, String gender) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.gender = gender;
+    public PersonVO() {
     }
 
     public Long getId() {
@@ -75,13 +57,16 @@ public class PersonDTO implements Serializable {
         this.gender = gender;
     }
 
-    public Person parsePerson(){
-        Person person = new Person();
-        person.setId(getId());
-        person.setFirstName(getFirstName());
-        person.setLastName(getLastName());
-        person.setAddress(getAddress());
-        person.setGender(getGender());
-        return person;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PersonVO personVO = (PersonVO) o;
+        return Objects.equals(id, personVO.id) && Objects.equals(firstName, personVO.firstName) && Objects.equals(lastName, personVO.lastName) && Objects.equals(address, personVO.address) && Objects.equals(gender, personVO.gender);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, address, gender);
     }
 }
