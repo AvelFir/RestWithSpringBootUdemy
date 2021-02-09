@@ -26,11 +26,11 @@ public class PersonServices {
         return vo;
     }
 
-    public PersonVOV2 createV2(PersonVOV2 person){
-        var entity = converter.convertVoToEntity(person);
-        var vo = converter.convertEntityToVO(repository.save(entity) );
-        return vo;
-    }
+//    public PersonVOV2 createV2(PersonVOV2 person){
+//        var entity = converter.convertVoToEntity(person);
+//        var vo = converter.convertEntityToVO(repository.save(entity) );
+//        return vo;
+//    }
 
     public List<PersonVO> findAll(){
         return DozerConverter.parseListObjects(repository.findAll(), PersonVO.class);

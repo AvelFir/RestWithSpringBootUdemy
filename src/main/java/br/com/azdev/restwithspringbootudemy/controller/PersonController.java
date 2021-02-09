@@ -31,10 +31,10 @@ public class PersonController {
         return services.create(person);
     }
 
-    @PostMapping("/v2")
-    public PersonVOV2 createV2(@RequestBody PersonVOV2 person){
-        return services.createV2(person);
-    }
+//    @PostMapping("/v2")
+//    public PersonVOV2 createV2(@RequestBody PersonVOV2 person){
+//        return services.createV2(person);
+//    }
 
     @PutMapping()
     public PersonVO update(@RequestBody PersonVO person){
