@@ -1,0 +1,15 @@
+INSERT INTO `person` (`id`, `address`, `first_name`, `gender`, `last_name`) VALUES
+(1, 'sao paulo', 'guilherme', 'male', 'martins'),
+(2, 'sao paulo', 'mariana', 'female', 'uchino'),
+(3, 'sao paulo', 'mariana', 'female', 'uchino'),
+(5, 'sao paulo', 'avel', 'female', 'uchino'),
+(6, 'sao paulo', 'avel', 'male', 'ryn'),
+(7, 'sao paulo', 'avel', 'male', 'fir'),
+(8, 'sao paulo', 'avel', 'female', 'uchino'),
+(9, 'sao paulo', 'avel', 'female', 'uchino'),
+(10, 'sao paulo', 'avel', 'female', 'uchino'),
+(11, 'sao paulo', 'avel', 'female', 'uchino'),
+(12, 'sao paulo', 'avel', 'female', 'uchino'),
+(13, 'sao paulo', 'avel', 'female', 'uchino'),
+(14, 'sao paulo', 'avel', 'male', 'fir'),
+(15, 'sao paulo', 'avel', 'male', 'fir');
