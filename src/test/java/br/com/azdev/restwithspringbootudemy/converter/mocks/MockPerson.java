@@ -3,8 +3,8 @@ package br.com.azdev.restwithspringbootudemy.converter.mocks;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.azdev.restwithspringbootudemy.model.Person;
-import br.com.azdev.restwithspringbootudemy.vo.PersonVO;
+import br.com.azdev.restwithspringbootudemy.data.model.Person;
+import br.com.azdev.restwithspringbootudemy.data.vo.v1.PersonVO;
 
 public class MockPerson {
 

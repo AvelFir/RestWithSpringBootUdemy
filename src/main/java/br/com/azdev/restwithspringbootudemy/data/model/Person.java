@@ -1,20 +1,28 @@
-package br.com.azdev.restwithspringbootudemy.vo;
+package br.com.azdev.restwithspringbootudemy.data.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class PersonVO implements Serializable {
+@Entity
+@Table(name = "person")
+public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "first_name", nullable = false, length = 100)
     private String firstName;
+    @Column(name = "last_name", nullable = false, length = 100)
     private String lastName;
+    @Column(nullable = false, length = 100)
     private String address;
+    @Column(nullable = false, length = 6)
     private String gender;
 
-    public PersonVO() {
+    public Person() {
     }
 
     public Long getId() {
@@ -61,8 +69,8 @@ public class PersonVO implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PersonVO personVO = (PersonVO) o;
-        return Objects.equals(id, personVO.id) && Objects.equals(firstName, personVO.firstName) && Objects.equals(lastName, personVO.lastName) && Objects.equals(address, personVO.address) && Objects.equals(gender, personVO.gender);
+        Person person = (Person) o;
+        return Objects.equals(id, person.id) && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(address, person.address) && Objects.equals(gender, person.gender);
     }
 
     @Override

@@ -3,10 +3,9 @@ package br.com.azdev.restwithspringbootudemy.services;
 import br.com.azdev.restwithspringbootudemy.converter.DozerConverter;
 import br.com.azdev.restwithspringbootudemy.converter.custom.PersonConverter;
 import br.com.azdev.restwithspringbootudemy.exception.ResourceNotFoundException;
-import br.com.azdev.restwithspringbootudemy.model.Person;
+import br.com.azdev.restwithspringbootudemy.data.model.Person;
 import br.com.azdev.restwithspringbootudemy.repository.PersonRepository;
-import br.com.azdev.restwithspringbootudemy.vo.PersonVO;
-import br.com.azdev.restwithspringbootudemy.vo.v2.PersonVOV2;
+import br.com.azdev.restwithspringbootudemy.data.vo.v1.PersonVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

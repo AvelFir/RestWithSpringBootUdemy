@@ -1,8 +1,7 @@
 package br.com.azdev.restwithspringbootudemy.controller;
 
 import br.com.azdev.restwithspringbootudemy.services.PersonServices;
-import br.com.azdev.restwithspringbootudemy.vo.PersonVO;
-import br.com.azdev.restwithspringbootudemy.vo.v2.PersonVOV2;
+import br.com.azdev.restwithspringbootudemy.data.vo.v1.PersonVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +10,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/person/v1")
 public class PersonController {
 
     @Autowired

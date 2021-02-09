@@ -1,4 +1,4 @@
-package br.com.azdev.restwithspringbootudemy.vo.v2;
+package br.com.azdev.restwithspringbootudemy.data.vo.v2;
 
 import java.io.Serializable;
 import java.util.Date;

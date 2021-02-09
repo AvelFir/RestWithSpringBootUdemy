@@ -1,8 +1,7 @@
 package br.com.azdev.restwithspringbootudemy.converter.custom;
 
-import br.com.azdev.restwithspringbootudemy.model.Person;
-import br.com.azdev.restwithspringbootudemy.vo.PersonVO;
-import br.com.azdev.restwithspringbootudemy.vo.v2.PersonVOV2;
+import br.com.azdev.restwithspringbootudemy.data.model.Person;
+import br.com.azdev.restwithspringbootudemy.data.vo.v2.PersonVOV2;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
