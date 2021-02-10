@@ -10,32 +10,30 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/person/v1")
+@RequestMapping("/api/person/v1")
 public class PersonController {
 
     @Autowired
     PersonServices services;
 
-    @GetMapping()
+    @GetMapping(produces = {"application/json","application/xml"})
     public List<PersonVO> findAll (){
         return services.findAll();
     }
-    @GetMapping(value= "{id}")
+
+    @GetMapping(value= "{id}",produces = {"application/json","application/xml"})
     public PersonVO findById (@PathVariable("id") Long id){
         return services.findById(id);
     }
 
-    @PostMapping()
+    @PostMapping(consumes = {"application/json","application/xml"},
+            produces = {"application/json","application/xml"})
     public PersonVO create(@RequestBody PersonVO person){
         return services.create(person);
     }
 
-//    @PostMapping("/v2")
-//    public PersonVOV2 createV2(@RequestBody PersonVOV2 person){
-//        return services.createV2(person);
-//    }
-
-    @PutMapping()
+    @PutMapping(consumes = {"application/json","application/xml"},
+            produces = {"application/json","application/xml"})
     public PersonVO update(@RequestBody PersonVO person){
         return services.create(person);
     }
