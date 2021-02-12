@@ -3,6 +3,7 @@ package br.com.azdev.restwithspringbootudemy.data.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -14,10 +15,14 @@ public class Book implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable = false, length = 180)
     private String author;
-    @Column(name = "launch_date")
-    private LocalDateTime launchDate;
+    @Column(name = "launch_date", nullable = false, length = 80)
+    @Temporal(TemporalType.DATE)
+    private Date launchDate;
+    @Column(nullable = false)
     private Double price;
+    @Column(nullable = false, length = 250)
     private String title;
 
     public Integer getId() {
@@ -36,11 +41,11 @@ public class Book implements Serializable {
         this.author = author;
     }
 
-    public LocalDateTime getLaunchDate() {
+    public Date getLaunchDate() {
         return launchDate;
     }
 
-    public void setLaunchDate(LocalDateTime launchDate) {
+    public void setLaunchDate(Date launchDate) {
         this.launchDate = launchDate;
     }
 

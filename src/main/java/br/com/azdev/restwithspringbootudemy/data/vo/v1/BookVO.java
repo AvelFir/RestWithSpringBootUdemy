@@ -6,7 +6,7 @@ import com.github.dozermapper.core.Mapping;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 
 @JsonPropertyOrder({"id","title","author","launchDate","price"})
@@ -18,7 +18,7 @@ public class BookVO extends RepresentationModel<BookVO> implements Serializable 
     @JsonProperty("id")
     private Integer key;
     private String author;
-    private LocalDateTime launchDate;
+    private Date launchDate;
     private Double price;
     private String title;
 
@@ -38,11 +38,11 @@ public class BookVO extends RepresentationModel<BookVO> implements Serializable 
         this.author = author;
     }
 
-    public LocalDateTime getLaunchDate() {
+    public Date getLaunchDate() {
         return launchDate;
     }
 
-    public void setLaunchDate(LocalDateTime launchDate) {
+    public void setLaunchDate(Date launchDate) {
         this.launchDate = launchDate;
     }
 
@@ -66,12 +66,13 @@ public class BookVO extends RepresentationModel<BookVO> implements Serializable 
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         BookVO bookVO = (BookVO) o;
         return Objects.equals(key, bookVO.key) && Objects.equals(author, bookVO.author) && Objects.equals(launchDate, bookVO.launchDate) && Objects.equals(price, bookVO.price) && Objects.equals(title, bookVO.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(key, author, launchDate, price, title);
+        return Objects.hash(super.hashCode(), key, author, launchDate, price, title);
     }
 }
