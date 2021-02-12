@@ -3,13 +3,14 @@ package br.com.azdev.restwithspringbootudemy.data.vo.v1;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @JsonPropertyOrder({"id","title","author","launchDate","price"})
-public class BookVO implements Serializable {
+public class BookVO extends RepresentationModel<BookVO> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
