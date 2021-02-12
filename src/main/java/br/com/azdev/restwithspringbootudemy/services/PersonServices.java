@@ -16,8 +16,6 @@ public class PersonServices {
 
     @Autowired
     PersonRepository repository;
-    @Autowired
-    PersonConverter converter;
 
     public PersonVO create(PersonVO person){
         var entity = DozerConverter.parseObject(person, Person.class);

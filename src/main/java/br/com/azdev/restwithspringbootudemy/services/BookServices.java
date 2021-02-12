@@ -1,6 +1,8 @@
 package br.com.azdev.restwithspringbootudemy.services;
 
+import br.com.azdev.restwithspringbootudemy.converter.DozerConverter;
 import br.com.azdev.restwithspringbootudemy.data.model.Book;
+import br.com.azdev.restwithspringbootudemy.data.vo.v1.BookVO;
 import br.com.azdev.restwithspringbootudemy.exception.ResourceNotFoundException;
 import br.com.azdev.restwithspringbootudemy.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,21 +16,26 @@ public class BookServices {
     @Autowired
     BookRepository repository;
 
-    public Book findById(Integer id){
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
+    public BookVO findById(Integer id){
+        Book entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
+        return DozerConverter.parseObject(entity, BookVO.class);
     }
 
-    public List<Book> findAll(){
-        return repository.findAll();
+    public List<BookVO> findAll(){
+         return DozerConverter.parseListObjects(repository.findAll(), BookVO.class);
     }
 
-    public Book create(Book book){
-        return repository.save(book);
+    public BookVO create(BookVO book){
+        Book entity = DozerConverter.parseObject(book, Book.class);
+        return DozerConverter.parseObject(repository.save(entity), BookVO.class);
     }
 
-    public Book update(Book book){
-        Book book1 = repository.findById(book.getId()).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
-        return repository.save(book1);
+    public BookVO update(BookVO book){
+        Book entity = repository.findById(book.getKey()).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
+        entity.setId(book.getKey());
+        entity.setAuthor(book.getAuthor());
+        entity.setLaunchDate(book.getLaunchDate());
+        return DozerConverter.parseObject(repository.save(entity), BookVO.class);
     }
 
     public void delete(Integer id){

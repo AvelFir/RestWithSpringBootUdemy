@@ -20,23 +20,23 @@ public class BookController {
     BookServices service;
 
     @GetMapping
-    public List<Book> findAll(){
+    public List<BookVO> findAll(){
        return service.findAll();
     }
 
     @GetMapping({"{id}"})
-    public Book findById(@PathVariable("id") Integer id){
+    public BookVO findById(@PathVariable("id") Integer id){
         return service.findById(id);
     }
 
     @PostMapping
-    public Book create(@RequestBody Book book){
-        return service.update(book);
+    public BookVO create(@RequestBody BookVO book){
+        return service.create(book);
     }
 
     @PutMapping
-    public Book update(@RequestBody Book book){
-        return service.create(book);
+    public BookVO update(@RequestBody BookVO book){
+        return service.update(book);
     }
 
     @DeleteMapping("{id}")
